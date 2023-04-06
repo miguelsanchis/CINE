@@ -15,7 +15,10 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from cine_project.views import saludo, uso_plantilla
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('saludo/<age>/', saludo),
+    path('plantilla/', uso_plantilla),
 ]
