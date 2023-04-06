@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Mi primera página HTML  </title>
+  </head>
+  <body>
+    <h1>Bienvenidos a mi página web usando diccionarios</h1>
+    <p>Esta es una prueba de HTML, mi nombre es {{mi_nombre}} {{mi_apellido}} y esta es su familia: {{familia.1}}. </p>
+    <ul>
+    {% for nombre in familia %}
+      <li>{{nombre}}</li>
+    {% endfor %}
+    </ul>
+    <ul>
+    {% if familia.1 == "Pare" %}
+      <li>Hola holaaaa</li>
+    {% endif %}
+    </ul>
+  </body>
+</html>

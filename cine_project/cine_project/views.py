@@ -1,6 +1,8 @@
 import datetime
 from django.http import HttpResponse
 from django.template import Template, Context
+from django.template.loader import get_template
+from django.shortcuts import render
 
 
 def saludo(request, age):
@@ -27,3 +29,28 @@ def uso_plantilla(request):
     ctx = Context()
     documento = plt.render(ctx)
     return HttpResponse(documento)
+
+def saludo_con_diccionarios(request):
+    """Esta funcion usa diccionarios"""
+    nombre = "Miguel"
+    with open("/Users/miguel/repos/CINE/cine_project/cine_project/templates/saludo_dicc.html") as doc_externo:
+        plt = Template(doc_externo.read())
+    ctx = Context({"mi_nombre":nombre,"mi_apellido":"Sanchis","familia":["Adri","Mare","Pare"]})
+    documento = plt.render(ctx)
+    return HttpResponse(documento)
+
+def uso_plantilla_cargadores(request):
+    """Esta plantilla usa cargadores, una forma mas eficiente de uiliazr plantillas. En settings 'templates' hemos definido la ruta de
+    donde hemos guardado todas nuestras plantillas e importado la clase loader"""
+
+    nombre = "miguel"
+    doc_externo=get_template("saludo_dicc.html")
+    documento = doc_externo.render({"mi_nombre":nombre,"mi_apellido":"Sanchis","familia":["Adri","Mare","Pare"]})
+    return HttpResponse(documento)
+
+def uso_shortcuts(request):
+
+    nombre = "miguel"
+    ctx= {"mi_nombre":nombre,"mi_apellido":"Sanchis","familia":["Adri","Mare","Pare"]}
+
+    return render(HttpRequest=request,template_name="saludo_dicc",context=ctx)

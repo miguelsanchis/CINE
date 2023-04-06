@@ -54,7 +54,7 @@ ROOT_URLCONF = 'cine_project.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': ["cine_project/templates"],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
